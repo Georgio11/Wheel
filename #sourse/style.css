@@ -1,0 +1,560 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../fonts/Kanit-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+html,
+body {
+    background: #fff;
+    height: 100%;
+    line-height: 22px;
+    font-size: 18px;
+    font-family: 'CustomFont';
+    font-weight: 700;
+    font-style: normal;
+    overflow: hidden;
+}
+
+/* landing */
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: url(../images/bg.webp) no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    background: url(../images/logo.webp);
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: contain;
+    width: 9%;
+    height: 10%;
+    z-index: 4;
+    top: 4%;
+    left: 11%;
+}
+
+.mountain {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 200%;
+    z-index: 3;
+}
+
+.left_mountain {
+    left: 0;
+    background: url(../images/left_mountain.webp);
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: contain;
+}
+
+.right_mountain {
+    right: 0;
+    background: url(../images/right_mountain.webp);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: contain;
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    right: -100%;
+    background: url(../images/ground.webp);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    height: 100%;
+    width: 400%;
+    display: none;
+}
+
+.wheel_container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 2%;
+}
+
+.wheel_wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wheel_frame {
+    background: url(../images/frame.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 90%;
+    width: 100%;
+    z-index: 2;
+}
+
+.wheel {
+    position: absolute;
+    background: url(../images/wheel.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    top: 18%;
+}
+
+.rotating {
+    transition: all 4s ease;
+}
+
+.start_btn {
+    position: absolute;
+    width: 40%;
+    height: 66%;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.flag {
+    position: absolute;
+    background: url(../images/flag.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 6%;
+    height: 10%;
+    top: 46%;
+    z-index: 5;
+}
+
+.spotty {
+    position: absolute;
+    background: url(../images/spotty.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 41%;
+    height: 75%;
+    bottom: 14%;
+    left: 0;
+    z-index: 8;
+}
+
+.text {
+    position: absolute;
+    top: 22%;
+    right: 4%;
+    background: url(../images/text.webp);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: contain;
+    width: 20%;
+    height: 32%;
+    z-index: 9;
+}
+  
+.pointer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 23%;
+    height: 45%;
+    z-index: 6;
+}
+
+.pointer_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.stick {
+    position: absolute;
+    background: url(../images/stick.webp);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.board {
+    position: absolute;
+    left: 8%;
+    background: url(../images/spin.webp);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+    width: calc(100vw / 6);
+    height: calc(100vh / 5);
+}
+
+.board.active {
+    animation: 4s boardFall;
+}
+
+@keyframes boardFall {
+    0% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.pointer_text {
+    position: absolute;
+    bottom: calc(100vh / 5.2);
+    right: calc(100vw / 21);
+    color: #FFDAAC;
+    font-weight: 400;
+    font-size: calc(100vw / 100);
+    line-height: calc(100vw / 100);
+    z-index: 5;
+}
+
+.modal {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    background: rgba(44, 26, 49, 0.6);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal.active.opacity {
+    opacity: 1;
+}
+
+.registration {
+    display: none;
+    justify-content: center;
+    background: url(../images/registration.webp);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: contain;
+    width: 30%;
+    height: 60%;
+}
+
+.registration.active {
+    display: flex;
+    animation: 2s fallDoun;
+}
+
+@keyframes fallDoun {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.registration a {
+    align-self: flex-end;
+    width: 60%;
+    height: 47%;
+}
+
+.ground.modificate {
+    display: block;
+    z-index: 2;
+}
+
+.left_mountain.modificate {
+    left: -9%;
+    background: url(../images/left_mountain_media.webp);
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: contain;
+    z-index: 3;
+}
+
+.right_mountain.modificate {
+    right: -10%;
+    background: url(../images/right_mountain_media.webp);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: contain;
+    z-index: 1;
+}
+
+.wheel_container.modificate {
+    left: 0;
+    z-index: 3;
+    transform: translateY(5%) scale(1.4);
+}
+
+.spotty.modificate {
+    width: 45%;
+    height: 35%;
+    z-index: 2;
+    top: 0;
+    left: 50%;
+    transform: translateX(-40%);
+}
+
+.text.modificate {
+    top: 5%;
+}
+
+.logo.modificate {
+    width: 17%;
+    height: 15%;
+    top: 2%;
+    left: 5%;
+}
+
+.pointer.modificate {
+    width: 40%;
+    height: 40%;
+    bottom: -2%;
+    right: -3%;
+    transform-origin: center bottom;
+    transform: rotate(7deg);
+}
+
+.board.modificate {
+    width: 70%;
+    bottom: 37%;
+}
+
+.pointer_text.modificate {
+    bottom: 10%;
+    right: 1%;
+    font-size: calc(100vw / 35);
+    line-height: calc(100vw / 35);
+    text-shadow: 1px 1px 10px #000;
+}
+
+.wheel_btn.modificate {
+    width: 60%;
+    height: 40%;
+}
+
+.registration.modificate {
+    width: 55%;
+    height: 60%;
+}
+
+.registration.modificate a {
+    width: 80%;
+}
+
+/* media */
+
+@media (max-width: 480px) and (max-height: 932px) {
+    .left_mountain.modificate {
+        left: -18%;
+    }
+    
+    .right_mountain.modificate {
+        right: -25%;
+    }
+    
+    .wheel_container.modificate {
+        z-index: 4;
+        transform: translateY(7%) scale(1.7);
+    }
+
+    .wheel_frame {
+        background: url(../images/frame_media.webp);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    
+    .spotty.modificate {
+        width: 80%;
+        height: 45%;
+        z-index: 2;
+        top: -2%;
+        left: 50%;
+        transform: translateX(-45%);
+        z-index: 3;
+    }
+    
+    .text.modificate {
+        top: 8%;
+        right: 10%;
+        background: url(../images/text_media.webp);
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: contain;
+        width: 33%;
+    }
+    
+    .logo.modificate {
+        width: 17%;
+        height: 10%;
+        top: 1%;
+        left: 5%;
+    }
+    
+    .pointer.modificate {
+        width: 65%;
+        height: 45%;
+        bottom: -1%;
+        right: -10%;
+        transform: rotate(7deg);
+    }
+
+    .pointer.modificate.active {
+        animation: 4s pointerFall;
+        transform-origin: center bottom;
+    }
+
+    @keyframes pointerFall {
+        0% {
+            transform: translateY(0) rotate(7deg);
+        }
+    
+        50% {
+            transform: translateY(30%) rotate(90deg);
+        }
+    
+        100% {
+            transform: translateY(0) rotate(7deg);
+        }
+    }
+    
+    .board.modificate {
+        width: 70%;
+        bottom: 45%;
+    }
+    
+    .pointer_text.modificate {
+        bottom: 17%;
+        right: 3%;
+        font-size: calc(100vw / 35);
+        line-height: calc(100vw / 35);
+        text-shadow: 3px 3px 10px #000;
+    }
+
+    .registration.modificate {
+        width: 70%;
+    }
+}
+
+@media (max-width: 431px) and (max-height: 932px) {
+    .spotty.modificate {
+        width: 90%;
+        top: 1%;
+    }
+    
+    .text.modificate {
+        top: 12%;
+        right: 6%;
+        width: 38%;
+    }
+    
+    .logo.modificate {
+        top: 0;
+    }
+
+    .registration.modificate {
+        width: 80%;
+    }
+}
+
+@media (max-width: 431px) and (max-height: 732px) {
+    .text.modificate {
+        top: 6%;
+    }
+}
+
+@media (max-width: 415px) and (max-height: 800px) {    
+    .text.modificate {
+        top: 5%;
+    }
+}
+
+@media (max-width: 400px) and (max-height: 932px) {    
+    .text.modificate {
+        top: 10%;
+    }
+}
+
+@media (max-width: 376px) and (max-height: 700px) {
+    .spotty.modificate {
+        width: 80%;
+        height: 45%;
+        top: -2%;
+    }
+    
+    .text.modificate {
+        top: 8%;
+        right: 10%;
+        background: url(../images/text_media.webp);
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: contain;
+        width: 33%;
+    }
+    
+    .logo.modificate {
+        width: 17%;
+        height: 10%;
+        top: 1%;
+        left: 5%;
+    }
+}
